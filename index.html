@@ -3,12 +3,17 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>DISCL-VC: Disentangled Discrete Representation and In-Context Learning for Controllable Zero-Shot Voice Conversion</title>
+  <title>Discl-VC: Disentangled Discrete Representation and In-Context Learning for Controllable Zero-Shot Voice Conversion</title>
   <meta name="generator" content="Jekyll v3.9.0">
   <meta property="og:title" content="TODO: title">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathJax Example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
@@ -36,7 +41,7 @@
 
   <section class="main-content">
     <h1 id="">
-      <center>DISCL-VC: Disentangled Discrete Representation and In-Context Learning for Controllable Zero-Shot Voice Conversion</center>
+      <center>Discl-VC: Disentangled Discrete Representation and In-Context Learning for Controllable Zero-Shot Voice Conversion</center>
     </h1>
 
 
@@ -54,22 +59,31 @@
     <p> Currently, zero-shot voice conversion systems are capable of synthesizing the voice of unseen speakers. 
       However, most existing approaches struggle to accurately replicate the speaking style of the source speaker 
       or mimic the distinctive speaking style of the target speaker, thereby limiting the controllability of voice conversion. 
-      In this work, we propose DISCL-VC, a novel voice conversion framework that disentangles content and prosody information 
+      In this work, we propose Discl-VC, a novel voice conversion framework that disentangles content and prosody information 
       from self-supervised speech representations and synthesizes the target speaker's voice through in-context learning with 
       a flow matching transformer. To achieve fine-grained control over the generated speech's prosody, we introduce a mask 
       generative transformer that predicts discrete prosody tokens in a non-autoregressive manner based on prompts. 
-      Experimental results demonstrate the superior performance of DISCL-VC in zero-shot voice conversion and its remarkable accuracy 
+      Experimental results demonstrate the superior performance of Discl-VC in zero-shot voice conversion and its remarkable accuracy 
       in prosody control for synthesized speech.
     </p>
 
     <div class="image-container">
       <div class="image-box">
-        <img src="fig/discl-vc.drawio.png" width="80%" alt="描述图片的文字1">
+        <img src="fig/Discl-VC.drawio.png" width="80%" alt="描述图片的文字1">
         <p>Figure 1: The overall architecture of our proposed system.</p>
       </div>
     </div>
-    <br><br>
 
+    <p>
+      Our system is trained in two stages:
+      </p>
+      <ul>
+        <li>In the first stage, we train all components except the Prosody Mask Transformer (PMT), and the training objective is:
+          \(\mathcal{L}_{stage1} = \mathcal{L}_{Dur} + \mathcal{L}_{SimVQ} + \mathcal{L}_{FMT} + \mathcal{L}_{F0}\) .</li>
+        <li>In the second stage, we only train the PMT while keeping the other parts frozen, and the training objective is:
+          \(\mathcal{L}_{stage2} = \mathcal{L}_{PMT}\) .</li>
+      </ul>
+      <!-- <br><br>   -->
 
     <h2>2. Demos -- zero-shot voice conversion with timbre transformation and prosody preservation<a name="prediction"></a></h2>
     <!-- <h3>Convert the emotion and style expresssions from different source speakers to the neutral target speakers without
@@ -84,7 +98,7 @@
           <th style="text-align: center"><strong>Timbre prompt</strong></th>
           <th style="text-align: center"><strong>FAcodec</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -166,7 +180,7 @@
           <th style="text-align: center"><strong>Timbre prompt</strong></th>
           <th style="text-align: center"><strong>FAcodec</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -250,7 +264,7 @@
           <th style="text-align: center"><strong>Timbre prompt</strong></th>
           <th style="text-align: center"><strong>FAcodec</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -334,7 +348,7 @@
           <th style="text-align: center"><strong>Timbre prompt</strong></th>
           <th style="text-align: center"><strong>FAcodec</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -419,7 +433,7 @@
     <!-- <h3>Convert the emotion and style expresssions from different source speakers to the neutral target speakers without
       emotional and stylistic training data.</h3> -->
 
-    <p><b>Part 1. Source speech</b><audio src="samples/source speech/p269_003.wav" controls=""
+    <p><b>Part 1. Source speech</b><audio src="samples/source speech/p228_002.wav" controls=""
         preload=""></audio></p>
 
     <table>
@@ -427,59 +441,59 @@
         <tr>
           <th style="text-align: center"><strong>Timbre and Prosody prompt</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td style="text-align: left"><audio src="samples/prompt speech/0011_000678.wav" controls="" preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p269_003_to_0011_000678.wav" controls=""
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p228_002_to_0011_000678.wav" controls=""
               preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p269_003_to_0011_000678.wav" controls=""
-              preload=""></audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0015_000925.wav" controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p269_003_to_0015_000925.wav"
-              controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p269_003_to_0015_000925.wav" controls=""
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p228_002_to_0011_000678.wav" controls=""
               preload=""></audio>
           </td>
         </tr>
         <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0015_001741.wav" controls="" preload=""></audio>
+          <td style="text-align: left"><audio src="samples/prompt speech/0011_001511.wav" controls="" preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p269_003_to_0015_001741.wav"
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p228_002_to_0011_001511.wav"
               controls="" preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p269_003_to_0015_001741.wav" controls=""
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p228_002_to_0011_001511.wav" controls=""
               preload=""></audio>
           </td>
         </tr>
         <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0016_001503.wav" controls=""
-              preload=""></audio>
+          <td style="text-align: left"><audio src="samples/prompt speech/0015_000249.wav" controls="" preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p269_003_to_0016_001503.wav"
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p228_002_to_0015_000249.wav"
               controls="" preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p269_003_to_0016_001503.wav"
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p228_002_to_0015_000249.wav" controls=""
+              preload=""></audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="samples/prompt speech/0016_000549.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p228_002_to_0016_000549.wav"
+              controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p228_002_to_0016_000549.wav"
               controls="" preload=""></audio>
           </td>
         </tr>
         <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0020_001042.wav" controls=""
+          <td style="text-align: left"><audio src="samples/prompt speech/0020_000641.wav" controls=""
               preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p269_003_to_0020_001042.wav" 
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p228_002_to_0020_000641.wav" 
             controls="" preload=""></audio>
           </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p269_003_to_0020_001042.wav"
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p228_002_to_0020_000641.wav"
               controls="" preload=""></audio>
           </td>
         </tr>
@@ -493,7 +507,7 @@
         <tr>
           <th style="text-align: center"><strong>Timbre and Prosody prompt</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -554,82 +568,14 @@
       </tbody>
     </table>
 
-    <p><b>Part 3. Source speech</b><audio src="samples/source speech/p326_002.wav" controls=""
-        preload=""></audio></p>
+    <p><b>Part 3. Source speech</b><audio src="samples/source speech/p347_001.wav" controls=""
+      preload=""></audio></p>
     <table>
       <thead>
         <tr>
           <th style="text-align: center"><strong>Timbre and Prosody prompt</strong></th>
           <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0011_000678.wav" controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p326_002_to_0011_000678.wav"
-              controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p326_002_to_0011_000678.wav" controls=""
-              preload=""></audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0011_001511.wav" controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p326_002_to_0011_001511.wav"
-              controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p326_002_to_0011_001511.wav" controls=""
-              preload=""></audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0015_000648.wav" controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p326_002_to_0015_000648.wav"
-              controls="" preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p326_002_to_0015_000648.wav" controls=""
-              preload=""></audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0016_000549.wav" controls=""
-              preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio
-              src="samples/vevo/vctk2esd/p326_002_to_0016_000549.wav" controls=""
-              preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p326_002_to_0016_000549.wav"
-              controls="" preload=""></audio>
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align: left"><audio src="samples/prompt speech/0020_001123.wav" controls=""
-              preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio
-              src="samples/vevo/vctk2esd/p326_002_to_0020_001123.wav" controls=""
-              preload=""></audio>
-          </td>
-          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p326_002_to_0020_001123.wav"
-              controls="" preload=""></audio>
-          </td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
-    <p><b>Part 4. Source speech</b><audio src="samples/source speech/p347_001.wav" controls=""
-        preload=""></audio></p>
-    <table>
-      <thead>
-        <tr>
-          <th style="text-align: center"><strong>Timbre and Prosody prompt</strong></th>
-          <th style="text-align: center"><strong>Vevo</strong></th>
-          <th style="text-align: center"><strong>DISCL-VC</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -689,9 +635,89 @@
 
         <tr>
 
+    </tbody>  
+  </table>
+
+
+    <p><b>Part 4. Source speech</b><audio src="samples/source speech/p314_004.wav" controls=""
+        preload=""></audio></p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><strong>Timbre prompt</strong></th>
+          <th style="text-align: center"><strong>Prosody prompt</strong></th>
+          <th style="text-align: center"><strong>Vevo</strong></th>
+          <th style="text-align: center"><strong>Discl-VC</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left"><audio src="samples/source speech/p254_002.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/prompt speech/0015_000249.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p314_004_to_0015_000249_to_p254_002.wav"
+              controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p314_004_to_0015_000249_to_p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="samples/source speech/p254_002.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/prompt speech/0015_001392.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p314_004_to_0015_001392_to_p254_002.wav"
+              controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p314_004_to_0015_001392_to_p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="samples/source speech/p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/prompt speech/0016_000832.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio
+              src="samples/vevo/vctk2esd/p314_004_to_0016_000832_to_p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p314_004_to_0016_000832_to_p254_002.wav"
+              controls="" preload=""></audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="samples/source speech/p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/prompt speech/0020_000641.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio
+              src="samples/vevo/vctk2esd/p314_004_to_0020_000641_to_p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p314_004_to_0020_000641_to_p254_002.wav"
+              controls="" preload=""></audio>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="samples/source speech/p254_002.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/prompt speech/0011_001511.wav" controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/vevo/vctk2esd/p314_004_to_0011_001511_to_p254_002.wav"
+              controls="" preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="samples/disclvc/vctk2esd/p314_004_to_0011_001511_to_p254_002.wav" controls=""
+              preload=""></audio>
+          </td>
+        </tr>
+        <tr>
       </tbody>
     </table>
-
 
     <!-- <p><b>Short summary:</b> When the target neutral speaker is male, the FS2-GST and FS2-VAE cannot produce correct
       timbre, although the genereted speech is emotional. Besides, FS2-BN sometimes also cannot generate male voice. The
